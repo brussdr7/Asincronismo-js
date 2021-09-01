@@ -14,3 +14,17 @@ fetchData(API)
         console.log(data.dimension);
     })
     .catch(err => console.error(err));
+
+fetchData(API)
+    .then(data => {
+        console.log(data.info.pages);
+        return fetchData(`${API}${data.results[6].id}`);
+    })
+    .then(data => {
+        console.log(data.name);
+        return fetchData(data.origin.url);
+    })
+    .then(data => {
+        console.log(data.dimension);
+    })
+    .catch(err => console.error(err));
