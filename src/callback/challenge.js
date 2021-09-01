@@ -1,6 +1,6 @@
 let XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
-let API = 'https://rickandmortyapi.com/api/character';
+let API = 'https://rickandmortyapi.com/api/character/';
 
 function fetchData(url_api, callback) {
     let xhttp = new XMLHttpRequest();
@@ -8,6 +8,7 @@ function fetchData(url_api, callback) {
     xhttp.onreadystatechange = function (event) {
         if (xhttp.readyState === 4) {
             if (xhttp.status === 200) {
+                console.log(xhttp.status);
                 callback(null, JSON.parse(xhttp.responseText));
             } else {
                 const error = new Error("Error " + url_api);
@@ -27,6 +28,9 @@ fetchData(API, function (error1, data1) {
             console.log(data1.info.count);
             console.log(data2.name);
             console.log(data3.dimension);
-        })
-    })
-})
+            console.log(API);
+            console.log(API + data1.results[0].id);
+            console.log(data2.origin.url);
+        });
+    });
+});
